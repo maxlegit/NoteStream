@@ -19,7 +19,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build frontend
+        run: npm run build
+
+      - name: Build backend
         run: |
-          npm run build
-          npx esbuild server
+          npx esbuild server/index.ts \
+            --platform=node \
+            --bundle \
+            --outfile=dist/server.js \
